@@ -3,10 +3,11 @@
   <multiselect
       v-model="value"
       :options="options"
-      :multiple="true"
+      :multiple="false"
       track-by="library"
       :custom-label="customLabel"
   >
+    <template v-slot:singleLabel="{ option }">You selected <strong>{{ option.library }}</strong></template>
   </multiselect>
   <pre>{{ value }}</pre>
 </template>
