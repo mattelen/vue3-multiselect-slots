@@ -1,20 +1,45 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <multiselect
+      v-model="value"
+      :options="options"
+      :multiple="true"
+      track-by="library"
+      :custom-label="customLabel"
+  >
+  </multiselect>
+  <pre>{{ value }}</pre>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import multiselect from 'vue-multiselect';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    multiselect
+  },
+  data() {
+    return {
+      value: {language: 'JavaScript', library: 'Vue-Multiselect'},
+      options: [
+        {language: 'JavaScript', library: 'Vue.js'},
+        {language: 'JavaScript', library: 'Vue-Multiselect'},
+        {language: 'JavaScript', library: 'Vuelidate'}
+      ]
+    }
+  },
+  methods: {
+    customLabel(option) {
+      return `${option.library} - ${option.language}`
+    }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
+@import '~vue-multiselect/dist/vue-multiselect.css';
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
